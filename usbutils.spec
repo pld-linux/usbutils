@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Summary(pl):	Linuksowe narzêdzia do USB
 Name:		usbutils
-Version:	0.10
+Version:	0.11
 Release:	1
 License:	GPL
 Group:		Applications/System
