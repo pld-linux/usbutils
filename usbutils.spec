@@ -2,10 +2,11 @@ Summary:	Linux USB utilities
 Summary(pl):	Linuksowe narzêdzia do USB
 Name:		usbutils
 Version:	0.11
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
+Source1:	http://www.linux-usb.org/usb.ids
 Patch0:		%{name}-no_external_getopt.patch
 Patch1:		%{name}-hwdata_in_misc.patch
 Patch2:		%{name}-ids.patch
@@ -29,6 +30,13 @@ obs³ug± interfejsu /proc/bus/usb) lub j±dra 2.2 z PLD.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+
+# paranoid check whether usb.ids in _sourcedir isn't too old
+if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
+	echo "usb.ids needs to be updated"
+	exit 1
+fi
+cp -f %{SOURCE1} .
 %patch2 -p1
 
 %build
