@@ -5,10 +5,6 @@ Version:	0.8
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(pl):	Aplikacje/System
-Group(pt_BR):	Aplicações/Sistema
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
