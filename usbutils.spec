@@ -28,7 +28,6 @@ obs³ug± interfejsu /proc/bus/usb) lub kernela 2.2 z PLD.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 rm -f missing
