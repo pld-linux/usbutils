@@ -2,12 +2,13 @@ Summary:	Linux USB utilities
 Summary(pl):	Linuksowe narzêdzia do USB
 Name:		usbutils
 Version:	0.11
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
 Patch0:		%{name}-no_external_getopt.patch
 Patch1:		%{name}-hwdata_in_misc.patch
+Patch2:		%{name}-ids.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -22,16 +23,17 @@ USB bus. It requires a Linux kernel version 2.3.15 or newer
 %description -l pl
 Pakiet usbutils zawiera narzêdzie do przegl±dania urz±dzeñ
 pod³±czonych do szyny USB. Wymaga j±dra w werji 2.3.15 lub nowszej (z
-obs³ug± interfejsu /proc/bus/usb) lub kernela 2.2 z PLD.
+obs³ug± interfejsu /proc/bus/usb) lub j±dra 2.2 z PLD.
 
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
-ln -s ../ltmain.sh libusb/ltmain.sh
+%patch2 -p1
 
 %build
 rm -f missing
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
@@ -39,8 +41,8 @@ cd libusb
 rm -f missing
 %{__aclocal}
 %{__autoconf}
-%{__automake}
-%{__libtoolize}
+# don't use --force here!
+automake -a -c --foreign
 cd ..
 %configure
 %{__make}

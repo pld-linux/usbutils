@@ -1,0 +1,49 @@
+--- usbutils-0.11/usb.ids.orig	Mon Jun 17 11:25:14 2002
++++ usbutils-0.11/usb.ids	Thu Dec 26 00:19:16 2002
+@@ -16,6 +16,8 @@
+ 
+ 0000  Virtual
+ 	0000  Hub
++0123  eGalax ???
++	0001  eGalax TouchKit
+ 0386  LTS
+ 	0001  PSX for USB Converter
+ 03e8  AOX Inc.
+@@ -1806,7 +1808,7 @@
+ 0c70  MCT Elektronikladen
+ 	0000  USB08 Development board
+ 0c76  JMTek, LLC.
+-        0003  USBdisk
++	0003  USBdisk
+ 	0005  USBdisk
+ 0bda  RealTek Semiconductor Corp.
+ 	8150  RTL8150 Fast Ethernet Adapter
+@@ -1841,6 +1843,9 @@
+ 0e66  Hawking
+ 	400c  UF100 Ethernet [pegasus2]
+ 0e75  TVS Electronics, Ltd.
++0eef  eGalax
++	0001  eGalax TouchKit
++	0002  eGalax TouchKit
+ 0ef7  Tulip Computers International
+ 1046  Winbond Electronics Corp. [hex]
+ 	9967  W9967CF/W9968CF WebCam IC
+@@ -1931,6 +1936,9 @@
+ 	0001  TrackerPod Camera Stand
+ 3504  Micro Star
+ 	f110  Security Key
++3823  eGalax ???
++	0001  eGalax TouchKit
++	0002  eGalax TouchKit
+ 4242  USB Design by Example
+ 	4201  Buttons and Lights HID device
+ 	4220  Echo 1 Camera
+@@ -2647,7 +2655,7 @@
+ HUT 0a  Ordinal
+ 	001  Instance 1
+ 	002  Instance 2
+-	002  Instance 3
++	003  Instance 3
+ HUT 0b  Telephony
+ 	000  Unassigned
+ 	001  Phone
