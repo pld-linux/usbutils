@@ -3,16 +3,18 @@ Summary(pl):	Linuksowe narzêdzia do USB
 Summary(pt_BR):	Utilitários Linux USB
 Name:		usbutils
 Version:	0.11
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/System
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
 # Source0-md5:	05157bed61af65749f02713c10b8ef26
 Source1:	http://www.linux-usb.org/usb.ids
-# NoSource1-md5: d07093dd35ef251ce3e72d576e999476
+# NoSource1-md5: a11983a44b69cd942978ec4fa073e2f0
 Patch0:		%{name}-no_external_getopt.patch
 Patch1:		%{name}-hwdata_in_misc.patch
-Patch2:		%{name}-ids.patch
+Patch2:		%{name}-ignore-HCC.patch
+Patch3:		%{name}-ids.patch
+URL:		http://usb.in.tum.de/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -37,6 +39,7 @@ conectados a um barramento USB.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 # paranoid check whether usb.ids in _sourcedir isn't too old
 if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
@@ -44,16 +47,14 @@ if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
 	exit 1
 fi
 cp -f %{SOURCE1} .
-%patch2 -p1
+%patch3 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 cd libusb
-rm -f missing
 %{__aclocal}
 %{__autoconf}
 # don't use --force here!
