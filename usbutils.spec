@@ -2,23 +2,24 @@ Summary:	Linux USB utilities
 Summary(pl):	Linuksowe narzêdzia do USB
 Summary(pt_BR):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.11
-Release:	4
+Version:	0.70
+Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
-# Source0-md5:	05157bed61af65749f02713c10b8ef26
+Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
+# Source0-md5:	05276dc307a0297904bc892e9998bf59
 Source1:	http://www.linux-usb.org/usb.ids
-# NoSource1-md5: a11983a44b69cd942978ec4fa073e2f0
-Patch0:		%{name}-no_external_getopt.patch
-Patch1:		%{name}-hwdata_in_misc.patch
-Patch2:		%{name}-ignore-HCC.patch
-Patch3:		%{name}-ids.patch
-URL:		http://usb.in.tum.de/
+# NoSource1-md5: d811f8a376c84a3a377dd8b71fbea41d
+Patch0:		%{name}-ignore-HCC.patch
+Patch1:		%{name}-ids.patch
+URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	libusb-devel >= 0.1.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_datadir	/usr/share/misc
 
 %description
 usbutils contains a utility for inspecting devices connected to the
@@ -38,8 +39,6 @@ conectados a um barramento USB.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 # paranoid check whether usb.ids in _sourcedir isn't too old
 if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
@@ -47,19 +46,13 @@ if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
 	exit 1
 fi
 cp -f %{SOURCE1} .
-%patch3 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-cd libusb
-%{__aclocal}
-%{__autoconf}
-# don't use --force here!
-automake -a -c --foreign
-cd ..
 %configure
 %{__make}
 
@@ -77,4 +70,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man8/*
-%{_datadir}/misc/usb.ids
+%{_datadir}/usb.ids
