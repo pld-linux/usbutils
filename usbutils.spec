@@ -28,7 +28,7 @@ obs³ug± interfejsu /proc/bus/usb) lub kernela 2.2 z PLD.
 %setup -q
 
 %build
-libtoolize --copy --force
+%{__libtoolize}
 rm -f missing
 aclocal
 automake -a -c
