@@ -32,12 +32,12 @@ libtoolize --copy --force
 rm -f missing
 aclocal
 automake -a -c
-autoconf
+%{__autoconf}
 cd libusb
 rm -f missing
 aclocal
 automake -a -c
-autoconf
+%{__autoconf}
 cd ..
 %configure
 %{__make}
