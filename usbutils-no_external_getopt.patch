@@ -1,0 +1,35 @@
+--- usbutils-0.9/Makefile.am~	Tue May 28 01:09:58 2002
++++ usbutils-0.9/Makefile.am	Tue May 28 01:09:58 2002
+@@ -7,13 +7,11 @@
+ noinst_HEADERS = names.h usb.h usbdevice_fs.h devtree.h list.h usbmodules.h
+ 
+ lsusb_SOURCES = lsusb.c names.c devtree.c
+-lsusb_LDADD = @LIBOBJS@
+ 
+ usbmodules_SOURCES = usbmodules.c
+-usbmodules_LDADD = @LIBOBJS@
+ 
+ data_DATA = usb.ids
+ 
+ man_MANS = lsusb.8 usbmodules.8
+ 
+-EXTRA_DIST = $(man_MANS) $(data_DATA) usbutils.spec getopt.h getopt.c getopt1.c
++EXTRA_DIST = $(man_MANS) $(data_DATA) usbutils.spec getopt.h
+--- usbutils-0.9/configure.in~	Tue May 28 01:11:05 2002
++++ usbutils-0.9/configure.in	Tue May 28 01:11:05 2002
+@@ -21,7 +21,6 @@
+ AC_CHECK_PROG(AR, ar, ar, ar, ar)
+ 
+ AC_CHECK_HEADERS(getopt.h sys/ioctl.h syslog.h errno.h linux/usb.h linux/usbdevice_fs.h)
+-AC_CHECK_FUNCS(getopt_long,,LIBOBJS="$LIBOBJS getopt.o getopt1.o")
+ 
+ dnl set USBIDS_FILE in config.h.
+ if test "x${datadir}" = 'x${prefix}/share'; then
+--- usbutils-0.10/configure.in~	Sun Jun 30 09:09:08 2002
++++ usbutils-0.10/configure.in	Sun Jun 30 09:09:08 2002
+@@ -27,5 +27,4 @@
+ 
+ AC_CONFIG_SUBDIRS([libusb])
+ 
+-AC_SUBST(LIBOBJS)
+ AC_OUTPUT([Makefile])
