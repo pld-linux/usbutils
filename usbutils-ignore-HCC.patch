@@ -1,0 +1,11 @@
+--- usbutils-0.11/names.c.orig	Mon Jun 17 11:13:47 2002
++++ usbutils-0.11/names.c	Wed Mar 31 15:29:49 2004
+@@ -687,6 +687,8 @@
+                         continue;
+ 
+                 }			
++		if (buf[0] == 'H' && buf[1] == 'C' && buf[2] == 'C' && buf[3] == ' ')
++			continue; /* ignore HID country codes for now */
+ 		fprintf(stderr, "Unknown line at line %u\n", linectr);
+ 	}
+ }
