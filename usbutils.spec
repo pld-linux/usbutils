@@ -10,8 +10,7 @@ Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
 # Source0-md5:	05276dc307a0297904bc892e9998bf59
 Source1:	http://www.linux-usb.org/usb.ids
 # NoSource1-md5: d811f8a376c84a3a377dd8b71fbea41d
-Patch0:		%{name}-ignore-HCC.patch
-Patch1:		%{name}-ids.patch
+Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -38,7 +37,6 @@ conectados a um barramento USB.
 
 %prep
 %setup -q
-%patch0 -p1
 
 # paranoid check whether usb.ids in _sourcedir isn't too old
 if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
@@ -46,12 +44,13 @@ if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
 	exit 1
 fi
 cp -f %{SOURCE1} .
-%patch1 -p1
+%patch0 -p1
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
