@@ -9,7 +9,7 @@ Group:		Applications/System
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
 # Source0-md5:	05157bed61af65749f02713c10b8ef26
 Source1:	http://www.linux-usb.org/usb.ids
-# Source1-md5:	32db7d81370a78d9365b7423d16dab11
+# Source1-md5:	dbca452c500ccea9580c2fc8c389cf19
 Patch0:		%{name}-no_external_getopt.patch
 Patch1:		%{name}-hwdata_in_misc.patch
 Patch2:		%{name}-ids.patch
