@@ -31,12 +31,12 @@ obs³ug± interfejsu /proc/bus/usb) lub kernela 2.2 z PLD.
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 cd libusb
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %{__libtoolize}
