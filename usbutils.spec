@@ -8,6 +8,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
 Source1:	http://www.linux-usb.org/usb.ids
+# Source1-md5:	06525776c6824504a633f371b0140b6c
 Patch0:		%{name}-no_external_getopt.patch
 Patch1:		%{name}-hwdata_in_misc.patch
 Patch2:		%{name}-ids.patch
