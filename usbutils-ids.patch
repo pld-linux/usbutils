@@ -1,14 +1,5 @@
 --- usbutils-0.11/usb.ids.orig	Fri Feb  7 11:10:11 2003
 +++ usbutils-0.11/usb.ids	Fri Feb  7 11:34:36 2003
-@@ -2557,6 +2557,8 @@
- 0ee4  Sunrich Technology, Ltd
- 0eee  Digital Stream Technology, Inc.
- 0eef  D-WAV Scientific Co., Ltd
-+	0001  eGalax Touchkit
-+	0002  eGalax Touchkit
- 0ef0  Hitachi Cable, Ltd
- 0ef1  Aichi Micro Intelligent Corp.
- 0ef2  I/O Magic Corp.
 @@ -2904,6 +2906,9 @@
  3538  Power Quotient International Co., Ltd
  	0001  Travel Flash
