@@ -1,11 +1,14 @@
 Summary:	Linux USB utilities
+Summary(pl):	Linuksowe narzêdzia do USB
 Name:		usbutils
 Version:	0.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Source0:	http://usb.in.tum.de/download/usbutils/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -15,6 +18,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 usbutils contains a utility for inspecting devices connected to the
 USB bus. It requires a Linux kernel version 2.3.15 or newer
 (supporting the '/proc/bus/usb' interface).
+
+%description -l pl
+Pakiet usbutils zawiera narzêdzie do przegl±dania urz±dzeñ
+pod³±czonych do szyny USB. Wymaga j±dra w werji 2.3.15 lub nowszej (z
+obs³ug± interfejsu /proc/bus/usb).
 
 %prep
 %setup -q
