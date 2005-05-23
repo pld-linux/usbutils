@@ -2,12 +2,12 @@ Summary:	Linux USB utilities
 Summary(pl):	Linuksowe narzêdzia do USB
 Summary(pt_BR):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.70
+Version:	0.71
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
-# Source0-md5:	05276dc307a0297904bc892e9998bf59
+# Source0-md5:	479d7c7098ef44cc95e7978fd71c712c
 Source1:	http://www.linux-usb.org/usb.ids
 # NoSource1-md5: d811f8a376c84a3a377dd8b71fbea41d
 Patch0:		%{name}-ids.patch
