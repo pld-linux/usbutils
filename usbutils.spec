@@ -3,7 +3,7 @@ Summary(pl):	Linuksowe narzêdzia do USB
 Summary(pt_BR):	Utilitários Linux USB
 Name:		usbutils
 Version:	0.72
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
@@ -18,7 +18,7 @@ BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 0.1.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_datadir	/usr/share/misc
+%define		_datadir	/etc
 
 %description
 usbutils contains a utility for inspecting devices connected to the
