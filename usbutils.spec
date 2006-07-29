@@ -9,7 +9,7 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
 # Source0-md5:	ee345fe605ffcfce843dae4aed81122b
 Source1:	http://www.linux-usb.org/usb.ids
-# NoSource1-md5: e7bb612f9eeb1097174663225bae4d02
+# Source1-md5:	4703a89e9f0b13eec2177a0a0eed3507
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
