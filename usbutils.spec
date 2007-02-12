@@ -1,6 +1,6 @@
 Summary:	Linux USB utilities
-Summary(pl.UTF-8):   Linuksowe narzędzia do USB
-Summary(pt_BR.UTF-8):   Utilitários Linux USB
+Summary(pl.UTF-8):	Linuksowe narzędzia do USB
+Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
 Version:	0.72
 Release:	2
