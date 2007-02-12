@@ -1,6 +1,6 @@
 Summary:	Linux USB utilities
-Summary(pl):	Linuksowe narzêdzia do USB
-Summary(pt_BR):	Utilitários Linux USB
+Summary(pl.UTF-8):   Linuksowe narzÄ™dzia do USB
+Summary(pt_BR.UTF-8):   UtilitÃ¡rios Linux USB
 Name:		usbutils
 Version:	0.72
 Release:	2
@@ -26,13 +26,13 @@ USB bus. It requires a Linux kernel version 2.3.15 or newer
 (supporting the '/proc/bus/usb' interface) or patched PLD's 2.2
 kernel.
 
-%description -l pl
-Pakiet usbutils zawiera narzêdzie do przegl±dania urz±dzeñ
-pod³±czonych do szyny USB. Wymaga j±dra w werji 2.3.15 lub nowszej (z
-obs³ug± interfejsu /proc/bus/usb) lub j±dra 2.2 z PLD.
+%description -l pl.UTF-8
+Pakiet usbutils zawiera narzÄ™dzie do przeglÄ…dania urzÄ…dzeÅ„
+podÅ‚Ä…czonych do szyny USB. Wymaga jÄ…dra w werji 2.3.15 lub nowszej (z
+obsÅ‚ugÄ… interfejsu /proc/bus/usb) lub jÄ…dra 2.2 z PLD.
 
-%description -l pt_BR
-Este pacote contém utilitários para inspecionar dispositivos
+%description -l pt_BR.UTF-8
+Este pacote contÃ©m utilitÃ¡rios para inspecionar dispositivos
 conectados a um barramento USB.
 
 %prep
