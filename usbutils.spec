@@ -2,20 +2,22 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.72
-Release:	2
-License:	GPL
+Version:	0.73
+Release:	1
+License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
-# Source0-md5:	ee345fe605ffcfce843dae4aed81122b
+# Source0-md5:	88978b4ad891f610620b1b8e5e0f43eb
 Source1:	http://www.linux-usb.org/usb.ids
-# Source1-md5:	4703a89e9f0b13eec2177a0a0eed3507
+# NoSource1-md5:	af2f7c85cdb2757b62bdcc21efe8c9d5
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 0.1.8
+BuildRequires:	zlib-devel
+Requires:	libusb >= 0.1.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_datadir	/etc
@@ -61,12 +63,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# keep uncompressed database for compatibility with other tools
+gzip -d $RPM_BUILD_ROOT%{_datadir}/usb.ids.gz
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man8/*
+%attr(755,root,root) %{_sbindir}/lsusb
+%{_mandir}/man8/lsusb.8*
 %{_datadir}/usb.ids
