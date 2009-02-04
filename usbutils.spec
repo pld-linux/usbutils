@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
 Version:	0.73
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
@@ -15,9 +15,9 @@ URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRequires:	libusb-devel >= 0.1.8
+BuildRequires:	libusb-compat-devel >= 0.1.0
 BuildRequires:	zlib-devel
-Requires:	libusb >= 0.1.8
+Requires:	libusb-compat >= 0.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_datadir	/etc
