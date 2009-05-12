@@ -2,14 +2,12 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.73
-Release:	3
+Version:	0.82
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
 # Source0-md5:	88978b4ad891f610620b1b8e5e0f43eb
-Source1:	http://www.linux-usb.org/usb.ids
-# NoSource1-md5:	af2f7c85cdb2757b62bdcc21efe8c9d5
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
@@ -40,12 +38,6 @@ conectados a um barramento USB.
 %prep
 %setup -q
 
-# paranoid check whether usb.ids in _sourcedir isn't too old
-if [ "`wc -l < %{SOURCE1}`" -lt "`wc -l < usb.ids`" ] ; then
-	echo "usb.ids needs to be updated"
-	exit 1
-fi
-cp -f %{SOURCE1} .
 %patch0 -p1
 
 %build
@@ -62,9 +54,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-# keep uncompressed database for compatibility with other tools
-gzip -d $RPM_BUILD_ROOT%{_datadir}/usb.ids.gz
 
 %clean
 rm -rf $RPM_BUILD_ROOT
