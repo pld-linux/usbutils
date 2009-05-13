@@ -7,7 +7,7 @@ Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
-# Source0-md5:	88978b4ad891f610620b1b8e5e0f43eb
+# Source0-md5:	6e393cc7423b5d228fa3d34c21481ae4
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
