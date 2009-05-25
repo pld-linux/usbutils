@@ -64,3 +64,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/lsusb
 %{_mandir}/man8/lsusb.8*
 %{_datadir}/usb.ids
+# there is no devel package for now and the dir is part of filesystem
+%{_pkgconfigdir}/usbutils.pc
