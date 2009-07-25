@@ -2,12 +2,12 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.82
+Version:	0.84
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
-# Source0-md5:	6e393cc7423b5d228fa3d34c21481ae4
+# Source0-md5:	87612c82e66393a395db91361d168c1b
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
@@ -62,7 +62,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_sbindir}/lsusb
+%attr(755,root,root) %{_sbindir}/usb-devices
 %{_mandir}/man8/lsusb.8*
+%{_mandir}/man8/usb-devices.8*
 %{_datadir}/usb.ids
 # there is no devel package for now and the dir is part of filesystem
 %{_pkgconfigdir}/usbutils.pc
