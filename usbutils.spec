@@ -2,12 +2,12 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.84
+Version:	0.86
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-usb/%{name}-%{version}.tar.gz
-# Source0-md5:	87612c82e66393a395db91361d168c1b
+# Source0-md5:	34979f675d2bcb3e1b45012fa830a53f
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
@@ -37,7 +37,6 @@ conectados a um barramento USB.
 
 %prep
 %setup -q
-
 %patch0 -p1
 
 %build
@@ -53,6 +52,7 @@ conectados a um barramento USB.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
+	pkgconfigdir=%{_pkgconfigdir} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -62,9 +62,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_sbindir}/lsusb
-%attr(755,root,root) %{_sbindir}/usb-devices
+%attr(755,root,root) %{_sbindir}/update-usbids.sh
+%attr(755,root,root) %{_bindir}/usb-devices
+%{_mandir}/man1/usb-devices.1*
 %{_mandir}/man8/lsusb.8*
-%{_mandir}/man8/usb-devices.8*
 %{_datadir}/usb.ids
 # there is no devel package for now and the dir is part of filesystem
 %{_pkgconfigdir}/usbutils.pc
