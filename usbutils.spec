@@ -14,6 +14,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	libusb-compat-devel >= 0.1.0
+BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 Requires:	libusb-compat >= 0.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
