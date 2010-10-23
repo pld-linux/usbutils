@@ -10,10 +10,11 @@ Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.t
 # Source0-md5:	24893cb24fcf1a77c24c5ba5c25172e3
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	libtool
 BuildRequires:	libusb-compat-devel >= 0.1.0
+BuildRequires:	libusb-devel >= 1.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 Requires:	libusb-compat >= 0.1.0
@@ -65,6 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/lsusb
 %attr(755,root,root) %{_sbindir}/update-usbids.sh
 %attr(755,root,root) %{_bindir}/usb-devices
+%attr(755,root,root) %{_bindir}/usbhid-dump
 %{_mandir}/man1/usb-devices.1*
 %{_mandir}/man8/lsusb.8*
 %{_datadir}/usb.ids
