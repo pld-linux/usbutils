@@ -2,22 +2,20 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	0.91
+Version:	001
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	24893cb24fcf1a77c24c5ba5c25172e3
+# Source0-md5:	40398698053f9f735550117322430e57
 Patch0:		%{name}-ids.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	libtool
-BuildRequires:	libusb-compat-devel >= 0.1.0
 BuildRequires:	libusb-devel >= 1.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
-Requires:	libusb-compat >= 0.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_datadir	/etc
@@ -63,8 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_sbindir}/lsusb
 %attr(755,root,root) %{_sbindir}/update-usbids.sh
+%attr(755,root,root) %{_bindir}/lsusb
 %attr(755,root,root) %{_bindir}/usb-devices
 %attr(755,root,root) %{_bindir}/usbhid-dump
 %{_mandir}/man1/usb-devices.1*
