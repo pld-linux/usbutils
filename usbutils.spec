@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
 Version:	006
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
@@ -12,15 +12,15 @@ Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	hwdata >= 0.243
+BuildRequires:	hwdata >= 0.243-2
 BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 1.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
-Requires:	hwdata >= 0.243
+Requires:	hwdata >= 0.243-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		hwdatadir	/usr/share/hwdata
+%define		hwdatadir	/lib/hwdata
 
 %description
 usbutils contains a utility for inspecting devices connected to the
