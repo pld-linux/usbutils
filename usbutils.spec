@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
 Version:	006
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
@@ -21,6 +21,7 @@ Requires:	hwdata >= 0.243-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		hwdatadir	/lib/hwdata
+%define		_datadir	%{hwdatadir}
 
 %description
 usbutils contains a utility for inspecting devices connected to the
