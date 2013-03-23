@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	hwdata_check	# don't check hwdata usb.ids freshness
+#
 Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
@@ -12,7 +16,7 @@ Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	hwdata >= 0.243-2
+%{?with_hwdata_check:BuildRequires:	hwdata >= 0.243-2}
 BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 1.0.0
 BuildRequires:	pkgconfig
@@ -42,11 +46,13 @@ conectados a um barramento USB.
 %setup -q
 %patch0 -p1
 
+%if %{with hwdata_check}
 # paranoid check whether usb.ids in system isn't too old
 if [ usb.ids -nt %{hwdatadir}/usb.ids ]; then
 	: usb.ids needs to be updated
 	exit 1
 fi
+%endif
 %{__rm} usb.ids
 
 %build
@@ -67,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 	INSTALL="install -p" \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT/usr/bin/lsusb.py
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/lsusb.py
 
 %clean
 rm -rf $RPM_BUILD_ROOT
