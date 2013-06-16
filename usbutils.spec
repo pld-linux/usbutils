@@ -1,27 +1,29 @@
 #
 # Conditional build:
-%bcond_without	hwdata_check	# don't check hwdata usb.ids freshness
+%bcond_with	hwdata_check	# check hwdata usb.ids freshness
 #
 Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	006
-Release:	4
+Version:	007
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
-Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	9d13954981f4adbe3fd02aae6dbfafa9
+Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
+# Source0-md5:	c9df5107ae9d26b10a1736a261250139
 Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
-%{?with_hwdata_check:BuildRequires:	hwdata >= 0.243-2}
+%{?with_hwdata_check:BuildRequires:	hwdata >= 0.249}
 BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 1.0.0
 BuildRequires:	pkgconfig
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	hwdata >= 0.243-2
+Requires:	hwdata >= 0.249
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		hwdatadir	/lib/hwdata
