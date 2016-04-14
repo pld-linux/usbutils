@@ -1,13 +1,14 @@
 #
 # Conditional build:
 %bcond_with	hwdata_check	# check hwdata usb.ids freshness
-#
+
 Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
 Version:	008
-Release:	1
+# see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-April/024800.html
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
