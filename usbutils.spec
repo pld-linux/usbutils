@@ -8,10 +8,10 @@ Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
 Version:	008
 # see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-April/024800.html
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
-Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
+Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
 # Source0-md5:	2780b6ae21264c888f8f30fb2aab1259
 Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
@@ -22,9 +22,11 @@ BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 1.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	udev-devel >= 1:196
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	hwdata >= 0.249
+Requires:	udev-core >= 1:196
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		hwdatadir	/lib/hwdata
@@ -32,14 +34,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 usbutils contains a utility for inspecting devices connected to the
-USB bus. It requires a Linux kernel version 2.3.15 or newer
-(supporting the '/proc/bus/usb' interface) or patched PLD's 2.2
-kernel.
+USB bus.
 
 %description -l pl.UTF-8
 Pakiet usbutils zawiera narzędzie do przeglądania urządzeń
-podłączonych do szyny USB. Wymaga jądra w werji 2.3.15 lub nowszej (z
-obsługą interfejsu /proc/bus/usb) lub jądra 2.2 z PLD.
+podłączonych do szyny USB.
 
 %description -l pt_BR.UTF-8
 Este pacote contém utilitários para inspecionar dispositivos
