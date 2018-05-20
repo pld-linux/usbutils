@@ -1,21 +1,23 @@
-diff --git a/lsusb.py b/lsusb.py
-index 14d9a31..a34f736 100755
---- a/lsusb.py
-+++ b/lsusb.py
-@@ -16,7 +16,7 @@ nohub = False
- warnsort = False
+--- usbutils-010/lsusb.py.in.orig	2018-05-20 16:28:37.757075652 +0200
++++ usbutils-010/lsusb.py.in	2018-05-20 16:30:24.147074439 +0200
+@@ -519,7 +519,7 @@
+ 	print(" -c use colors")
+ 	print(" -e display endpoint info")
+ 	print(" -w display warning if usb.ids is not sorted correctly")
+-	print(" -f FILE override filename for /usr/share/usb.ids")
++	print(" -f FILE override filename for " + usbids)
+ 	print("Use lsusb.py -ciu to get a nice overview of your USB devices.")
+ 	return 2
  
- prefix = "/sys/bus/usb/devices/"
--usbids = "/usr/share/usb.ids"
-+usbids = "/lib/hwdata/usb.ids"
+--- usbutils-010/Makefile.am.orig	2018-05-15 15:45:26.000000000 +0200
++++ usbutils-010/Makefile.am	2018-05-20 15:33:58.907113099 +0200
+@@ -51,11 +51,11 @@
+ 	usbreset.c
  
- esc = chr(27)
- norm = esc + "[0;0m"
-diff -up usbutils-004/Makefile.am.orig usbutils-004/Makefile.am
---- usbutils-004/Makefile.am.orig	2011-09-20 09:42:04.282566870 +0200
-+++ usbutils-004/Makefile.am	2011-09-20 09:42:41.399102845 +0200
-@@ -38,7 +38,7 @@ EXTRA_DIST = \
- 	usbutils.pc.in
+ lsusb.py: $(srcdir)/lsusb.py.in
+-	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@
++	sed 's|VERSION|$(VERSION)|g;s|@usbids@|/lib/hwdata/usb.ids|g' $< >$@
+ 	chmod 755 $@
  
  lsusb.8: $(srcdir)/lsusb.8.in
 -	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@
@@ -23,23 +25,14 @@ diff -up usbutils-004/Makefile.am.orig usbutils-004/Makefile.am
  
  usb-devices.1: $(srcdir)/usb-devices.1.in
  	sed 's|VERSION|$(VERSION)|g' $< >$@
-@@ -47,7 +47,7 @@ pkgconfigdir = $(datarootdir)/pkgconfig
- pkgconfig_DATA = usbutils.pc
- 
- usbutils.pc: $(srcdir)/usbutils.pc.in
--	sed 's|@usbids@|$(datadir)/usb.ids|g;s|@VERSION[@]|$(VERSION)|g' $< >$@
-+	sed 's|@usbids@|/lib/hwdata/usb.ids|g;s|@VERSION[@]|$(VERSION)|g' $< >$@
- 
- DISTCLEANFILES = \
- 	lsusb.8 \
---- usbutils-006/configure.ac~	2012-07-06 23:20:41.000000000 +0300
-+++ usbutils-006/configure.ac	2013-01-20 00:04:33.521843802 +0200
-@@ -41,7 +41,7 @@
+--- usbutils-010/configure.ac.orig	2018-05-20 11:34:32.067277134 +0200
++++ usbutils-010/configure.ac	2018-05-20 15:35:00.030445728 +0200
+@@ -35,7 +35,7 @@
  	datadir:                ${datadir}
  	mandir:                 ${mandir}
  
 -	usb.ids:                ${datadir}/usb.ids
 +	usb.ids:                /lib/hwdata/usb.ids
- 	zlib:                   ${USE_ZLIB}
  
  	compiler:               ${CC}
+ 	cflags:                 ${CFLAGS}

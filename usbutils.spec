@@ -1,36 +1,31 @@
-#
-# Conditional build:
-%bcond_with	hwdata_check	# check hwdata usb.ids freshness
-
+# NOTE: usbutils>=008 requires udev; for udevless usage use usbutils-007
 Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	008
-# see http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2016-April/024800.html
+Version:	010
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	2780b6ae21264c888f8f30fb2aab1259
+# Source0-md5:	938e3707593974be99a0dd6d1de76671
 Patch0:		hwdata.patch
+Patch1:		%{name}-python3.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
-%{?with_hwdata_check:BuildRequires:	hwdata >= 0.249}
 BuildRequires:	libtool
-BuildRequires:	libusb-devel >= 1.0.0
+BuildRequires:	libusb-devel >= 1.0.9
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.507
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel >= 1:196
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	hwdata >= 0.249
+Requires:	libusb >= 1.0.9
 Requires:	udev-core >= 1:196
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		hwdatadir	/lib/hwdata
-%define		_datadir	%{hwdatadir}
 
 %description
 usbutils contains a utility for inspecting devices connected to the
@@ -44,49 +39,53 @@ podłączonych do szyny USB.
 Este pacote contém utilitários para inspecionar dispositivos
 conectados a um barramento USB.
 
+%package python
+Summary:	Python based lsusb program
+Summary(pl.UTF-8):	Program lsusb napisany w Pythonie
+Group:		Applications/System
+Requires:	hwdata >= 0.249
+
+%description python
+Python based lsusb program.
+
+%description python -l pl.UTF-8
+Program lsusb napisany w Pythonie.
+
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
-%if %{with hwdata_check}
-# paranoid check whether usb.ids in system isn't too old
-if [ usb.ids -nt %{hwdatadir}/usb.ids ]; then
-	: usb.ids needs to be updated
-	exit 1
-fi
-%endif
+%{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' lsusb.py.in
 
 %build
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-usbids \
 	--disable-silent-rules
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
-	pkgconfigdir=%{_pkgconfigdir} \
 	INSTALL="install -p" \
 	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_bindir}/lsusb.py
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc NEWS
 %attr(755,root,root) %{_bindir}/lsusb
 %attr(755,root,root) %{_bindir}/usb-devices
 %attr(755,root,root) %{_bindir}/usbhid-dump
 %{_mandir}/man1/usb-devices.1*
 %{_mandir}/man8/lsusb.8*
 %{_mandir}/man8/usbhid-dump.8*
-# there is no devel package for now and the dir is part of filesystem
-%{_pkgconfigdir}/usbutils.pc
+
+%files python
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/lsusb.py
