@@ -3,19 +3,18 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	010
+Version:	012
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	938e3707593974be99a0dd6d1de76671
+# Source0-md5:	0da98eb80159071fdbb00905390509d9
 Patch0:		hwdata.patch
-Patch1:		%{name}-python3.patch
 URL:		http://www.linux-usb.org/
-BuildRequires:	autoconf >= 2.60
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	libtool
-BuildRequires:	libusb-devel >= 1.0.9
+BuildRequires:	libusb-devel >= 1.0.14
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.507
 BuildRequires:	sed >= 4.0
@@ -23,7 +22,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel >= 1:196
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	libusb >= 1.0.9
+Requires:	libusb >= 1.0.14
 Requires:	udev-core >= 1:196
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,7 +53,6 @@ Program lsusb napisany w Pythonie.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' lsusb.py.in
 
@@ -63,6 +61,13 @@ Program lsusb napisany w Pythonie.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+cd usbhid-dump
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ..
 %configure \
 	--disable-silent-rules
 %{__make}

@@ -1,13 +1,13 @@
---- usbutils-010/lsusb.py.in.orig	2018-05-20 16:28:37.757075652 +0200
-+++ usbutils-010/lsusb.py.in	2018-05-20 16:30:24.147074439 +0200
-@@ -519,7 +519,7 @@
- 	print(" -c use colors")
- 	print(" -e display endpoint info")
- 	print(" -w display warning if usb.ids is not sorted correctly")
--	print(" -f FILE override filename for /usr/share/usb.ids")
-+	print(" -f FILE override filename for " + usbids)
+--- usbutils-012/lsusb.py.in.orig	2019-06-01 22:20:08.590192363 +0200
++++ usbutils-012/lsusb.py.in	2019-06-02 07:21:55.317421635 +0200
+@@ -463,7 +463,7 @@
+ 	print("  -C, --no-color        disable colors")
+ 	print("  -e, --endpoints       display endpoint info")
+ 	print("  -f FILE, --usbids-path FILE")
+-	print("                        override filename for /usr/share/usb.ids")
++	print("                        override filename for " + usbids)
+ 	print()
  	print("Use lsusb.py -ciu to get a nice overview of your USB devices.")
- 	return 2
  
 --- usbutils-010/Makefile.am.orig	2018-05-15 15:45:26.000000000 +0200
 +++ usbutils-010/Makefile.am	2018-05-20 15:33:58.907113099 +0200
