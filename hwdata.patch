@@ -11,8 +11,8 @@
  
 --- usbutils-010/Makefile.am.orig	2018-05-15 15:45:26.000000000 +0200
 +++ usbutils-010/Makefile.am	2018-05-20 15:33:58.907113099 +0200
-@@ -51,11 +51,11 @@
- 	usbreset.c
+@@ -51,7 +51,7 @@
+ 	LICENSES/GPL-3.0.txt
  
  lsusb.py: $(srcdir)/lsusb.py.in
 -	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@
@@ -20,11 +20,6 @@
  	chmod 755 $@
  
  lsusb.8: $(srcdir)/lsusb.8.in
--	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@
-+	sed 's|VERSION|$(VERSION)|g;s|@usbids@|/lib/hwdata/usb.ids|g' $< >$@
- 
- usb-devices.1: $(srcdir)/usb-devices.1.in
- 	sed 's|VERSION|$(VERSION)|g' $< >$@
 --- usbutils-010/configure.ac.orig	2018-05-20 11:34:32.067277134 +0200
 +++ usbutils-010/configure.ac	2018-05-20 15:35:00.030445728 +0200
 @@ -35,7 +35,7 @@
