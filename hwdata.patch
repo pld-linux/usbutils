@@ -12,7 +12,7 @@
 --- usbutils-010/Makefile.am.orig	2018-05-15 15:45:26.000000000 +0200
 +++ usbutils-010/Makefile.am	2018-05-20 15:33:58.907113099 +0200
 @@ -51,7 +51,7 @@
- 	LICENSES/GPL-3.0.txt
+ 	LICENSES/GPL-3.0-only.txt
  
  lsusb.py: $(srcdir)/lsusb.py.in
 -	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@

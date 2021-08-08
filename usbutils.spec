@@ -3,12 +3,12 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	013
+Version:	014
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	91b0c9a3382d6f4c382df7a98462de2e
+# Source0-md5:	f21aa68ee7870b161921a590be7765e6
 Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.61
@@ -63,7 +63,7 @@ Program lsusb napisany w Pythonie.
 %{__automake}
 cd usbhid-dump
 %{__libtoolize}
-%{__aclocal} -I m4
+%{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
