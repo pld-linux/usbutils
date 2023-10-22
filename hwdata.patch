@@ -6,13 +6,13 @@
  	print("  -f FILE, --usbids-path FILE")
 -	print("                        override filename for /usr/share/usb.ids")
 +	print("                        override filename for " + usbids)
+ 	print("  -w, --wakeup          display power wakeup setting")
  	print()
  	print("Use lsusb.py -ciu to get a nice overview of your USB devices.")
- 
 --- usbutils-010/Makefile.am.orig	2018-05-15 15:45:26.000000000 +0200
 +++ usbutils-010/Makefile.am	2018-05-20 15:33:58.907113099 +0200
 @@ -51,7 +51,7 @@
- 	LICENSES/GPL-3.0-only.txt
+ pkgconfig_DATA = usbutils.pc
  
  lsusb.py: $(srcdir)/lsusb.py.in
 -	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@
@@ -23,7 +23,7 @@
 --- usbutils-010/configure.ac.orig	2018-05-20 11:34:32.067277134 +0200
 +++ usbutils-010/configure.ac	2018-05-20 15:35:00.030445728 +0200
 @@ -35,7 +35,7 @@
- 	datadir:                ${datadir}
+ 	pkgconfigdir:		${pkgconfigdir}
  	mandir:                 ${mandir}
  
 -	usb.ids:                ${datadir}/usb.ids

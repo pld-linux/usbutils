@@ -3,12 +3,12 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	015
+Version:	016
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	8ae7f935f63d2a08f947bd91a818c47d
+# Source0-md5:	7f1d5352b568f65ce1b0b968d46e098e
 Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf >= 2.61
@@ -37,6 +37,17 @@ podłączonych do szyny USB.
 %description -l pt_BR.UTF-8
 Este pacote contém utilitários para inspecionar dispositivos
 conectados a um barramento USB.
+
+%package devel
+Summary:	Development files for usbutils
+Summary(pl.UTF-8):	Pliki programistyczne usbutils
+Group:		Development/Libraries
+
+%description devel
+Development files for usbutils.
+
+%description devel -l pl.UTF-8
+Pliki programistyczne usbutils.
 
 %package python
 Summary:	Python based lsusb program
@@ -90,6 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/usb-devices.1*
 %{_mandir}/man8/lsusb.8*
 %{_mandir}/man8/usbhid-dump.8*
+
+%files devel
+%defattr(644,root,root,755)
+%{_pkgconfigdir}/usbutils.pc
 
 %files python
 %defattr(644,root,root,755)
