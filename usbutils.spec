@@ -54,7 +54,7 @@ Program lsusb napisany w Pythonie.
 %setup -q
 %patch0 -p1
 
-%{__sed} -i -e '1s,.*python3,%{__python3},' lsusb.py
+%{__sed} -i -e '1s,.*python3,#!%{__python3},' lsusb.py
 
 %build
 %meson build
