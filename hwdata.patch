@@ -1,33 +1,21 @@
---- usbutils-012/lsusb.py.in.orig	2019-06-01 22:20:08.590192363 +0200
-+++ usbutils-012/lsusb.py.in	2019-06-02 07:21:55.317421635 +0200
-@@ -463,7 +463,7 @@
+--- usbutils-018/lsusb.py.orig	2024-10-22 11:33:33.000000000 +0200
++++ usbutils-018/lsusb.py	2024-10-23 13:18:12.108103599 +0200
+@@ -27,8 +27,7 @@
+ 
+ prefix = "/sys/bus/usb/devices/"
+ usbids = [
+-	"/usr/share/hwdata/usb.ids",
+-	"/usr/share/usb.ids",
++	"/lib/hwdata/usb.ids",
+ ]
+ cols = ("", "", "", "", "", "")
+ 
+@@ -467,7 +466,7 @@
  	print("  -C, --no-color        disable colors")
  	print("  -e, --endpoints       display endpoint info")
  	print("  -f FILE, --usbids-path FILE")
--	print("                        override filename for /usr/share/usb.ids")
-+	print("                        override filename for " + usbids)
+-	print("                        override filename for /usr/share/{hwdata/,}usb.ids")
++	print("                        override filename for " + ", ".join(usbids))
  	print("  -w, --wakeup          display power wakeup setting")
  	print()
  	print("Use lsusb.py -ciu to get a nice overview of your USB devices.")
---- usbutils-010/Makefile.am.orig	2018-05-15 15:45:26.000000000 +0200
-+++ usbutils-010/Makefile.am	2018-05-20 15:33:58.907113099 +0200
-@@ -51,7 +51,7 @@
- pkgconfig_DATA = usbutils.pc
- 
- lsusb.py: $(srcdir)/lsusb.py.in
--	sed 's|VERSION|$(VERSION)|g;s|@usbids@|$(datadir)/usb.ids|g' $< >$@
-+	sed 's|VERSION|$(VERSION)|g;s|@usbids@|/lib/hwdata/usb.ids|g' $< >$@
- 	chmod 755 $@
- 
- lsusb.8: $(srcdir)/lsusb.8.in
---- usbutils-010/configure.ac.orig	2018-05-20 11:34:32.067277134 +0200
-+++ usbutils-010/configure.ac	2018-05-20 15:35:00.030445728 +0200
-@@ -35,7 +35,7 @@
- 	pkgconfigdir:		${pkgconfigdir}
- 	mandir:                 ${mandir}
- 
--	usb.ids:                ${datadir}/usb.ids
-+	usb.ids:                /lib/hwdata/usb.ids
- 
- 	compiler:               ${CC}
- 	cflags:                 ${CFLAGS}

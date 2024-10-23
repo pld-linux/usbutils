@@ -3,27 +3,27 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	017
+Version:	018
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	8ff21441faf2e8128e4810b3d6e49059
+# Source0-md5:	0a351e2241c50a1f026a455dccf24d73
 Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
-BuildRequires:	autoconf >= 2.61
-BuildRequires:	automake >= 1:1.9
-BuildRequires:	libtool
-BuildRequires:	libusb-devel >= 1.0.14
+BuildRequires:	libusb-devel >= 1.0.22
+BuildRequires:	meson >= 0.60.0
+BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.507
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel >= 1:196
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	libusb >= 1.0.14
+Requires:	libusb >= 1.0.22
 Requires:	udev-core >= 1:196
+Obsoletes:	usbutils-devel < 018
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -37,17 +37,6 @@ podłączonych do szyny USB.
 %description -l pt_BR.UTF-8
 Este pacote contém utilitários para inspecionar dispositivos
 conectados a um barramento USB.
-
-%package devel
-Summary:	Development files for usbutils
-Summary(pl.UTF-8):	Pliki programistyczne usbutils
-Group:		Development/Libraries
-
-%description devel
-Development files for usbutils.
-
-%description devel -l pl.UTF-8
-Pliki programistyczne usbutils.
 
 %package python
 Summary:	Python based lsusb program
@@ -65,29 +54,15 @@ Program lsusb napisany w Pythonie.
 %setup -q
 %patch0 -p1
 
-%{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' lsusb.py.in
+%{__sed} -i -e '1s,.*python3,%{__python3},' lsusb.py
 
 %build
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd usbhid-dump
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd ..
-%configure \
-	--disable-silent-rules
-%{__make}
+%meson build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
-	INSTALL="install -p" \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -102,10 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/lsusb.8*
 %{_mandir}/man8/usbhid-dump.8*
 
-%files devel
-%defattr(644,root,root,755)
-%{_pkgconfigdir}/usbutils.pc
-
 %files python
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/lsusb.py
+%{_mandir}/man1/lsusb.py.1*
