@@ -57,12 +57,12 @@ Program lsusb napisany w Pythonie.
 %{__sed} -i -e '1s,.*python3,#!%{__python3},' lsusb.py
 
 %build
-%meson build
-%ninja_build -C build
+%meson
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%ninja_install -C build
+%meson_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
