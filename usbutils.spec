@@ -52,7 +52,7 @@ Program lsusb napisany w Pythonie.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %{__sed} -i -e '1s,.*python3,#!%{__python3},' lsusb.py
 
