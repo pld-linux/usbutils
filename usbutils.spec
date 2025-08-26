@@ -15,7 +15,7 @@ BuildRequires:	libusb-devel >= 1.0.22
 BuildRequires:	meson >= 0.60.0
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel >= 1:196
@@ -58,10 +58,12 @@ Program lsusb napisany w Pythonie.
 
 %build
 %meson
+
 %meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %meson_install
 
 %clean
