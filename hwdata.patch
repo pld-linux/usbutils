@@ -1,10 +1,11 @@
 --- usbutils-018/lsusb.py.orig	2024-10-22 11:33:33.000000000 +0200
 +++ usbutils-018/lsusb.py	2024-10-23 13:18:12.108103599 +0200
-@@ -27,8 +27,7 @@
+@@ -27,9 +27,7 @@
  
  prefix = "/sys/bus/usb/devices/"
  usbids = [
 -	"/usr/share/hwdata/usb.ids",
+-	"/usr/share/misc/usb.ids",
 -	"/usr/share/usb.ids",
 +	"/lib/hwdata/usb.ids",
  ]

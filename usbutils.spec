@@ -3,12 +3,12 @@ Summary:	Linux USB utilities
 Summary(pl.UTF-8):	Linuksowe narzędzia do USB
 Summary(pt_BR.UTF-8):	Utilitários Linux USB
 Name:		usbutils
-Version:	018
+Version:	019
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	0a351e2241c50a1f026a455dccf24d73
+# Source0-md5:	67a8eb4782540058d0648f83ecabdf6c
 Patch0:		hwdata.patch
 URL:		http://www.linux-usb.org/
 BuildRequires:	libusb-devel >= 1.0.22
